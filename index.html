@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NASA Astronomy Picture</title>
+  <link rel="icon" href="astronaut_icon.jpg" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🚀 NASA Astronomy Picture of the Day</h1>
+    <p>Select a date to explore the cosmos!</p>
+
+    <div class="date-picker">
+      <input type="date" id="dateInput" max="">
+      <button id="fetchBtn">Get Image</button>
+    </div>
+
+    <div id="loader" class="hidden">🔄 Loading...</div>
+
+    <div id="apodContainer" class="hidden">
+      <h2 id="title"></h2>
+      <div class="content-wrapper">
+        <div class="image-section">
+          <div class="image-wrapper">
+            <img id="apodImage" alt="NASA Astronomy Picture">
+          </div>
+        </div>
+        <div class="description-section">
+          <p id="description"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+/* ===== Base Styles ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  overflow-x: hidden;
+  background-attachment: fixed;
+}
+/* Animated Star Background - full screen */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png') no-repeat center center;
+  background-size: cover;
+  opacity: 0.35;
+  animation: moveStars 120s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: 2000px 2000px; }
+}
+
+/* ===== Title ===== */
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+  background: linear-gradient(90deg);  
+}
+
+p {
+  color: #62d2ec;
+  font-size: 1rem;
+}
+
+/* ===== Date Picker & Button ===== */
+.date-picker {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Custom Date Input Styling */
+input[type="date"] {
+  padding: 15px 20px;
+  border-radius: 25px;
+  border: 2px solid transparent;
+  outline: none;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  color: #fff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  min-width: 200px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23ff4f81" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>') no-repeat;
+  background-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+input[type="date"]:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border: 2px solid rgba(255, 79, 129, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255, 79, 129, 0.2);
+}
+
+input[type="date"]:focus {
+  border: 2px solid #ff4f81;
+  box-shadow: 0 0 20px rgba(255, 79, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Enhanced Button Styling */
+button {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #ff4f81, #9b5de5, #00d4ff);
+  background-size: 200% 200%;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  min-width: 150px;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 45px rgba(255, 79, 129, 0.4);
+  background-position: 100% 0;
+  animation: gradientShift 3s ease infinite;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(255, 79, 129, 0.3);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== Loader ===== */
+#loader {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* ===== APOD Card ===== */
+#apodContainer {
+  margin-top: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.6s ease forwards;
+  text-align: left;
+}
+
+/* ===== Content Layout ===== */
+.content-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.image-section {
+  flex: 1;
+  min-width: 0;
+  margin-top: 15px;
+}
+
+.description-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* ===== Title in Container ===== */
+#apodContainer h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  background: linear-gradient(90deg, #ff4f81, #9b5de5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* ===== Image Styles ===== */
+.image-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+  border-radius: 12px;
+}
+
+.image-wrapper img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Description ===== */
+#description {
+  color: #ddd;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: justify;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+#description::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 79, 129, 0.05), transparent);
+  transition: left 0.8s ease;
+}
+
+#description:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 45px rgba(255, 79, 129, 0.15);
+  border: 1px solid rgba(255, 79, 129, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+}
+
+#description:hover::before {
+  left: 100%;
+}
+
+/* Enhanced text selection */
+#description::selection {
+  background: rgba(255, 79, 129, 0.3);
+  color: #fff;
+}
+
+#description::-moz-selection {
+  background: rgba(255, 79, 129, 0.3);
+  color: #fff;
+}
+
+/* Animated text reveal effect */
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#description {
+  animation: textReveal 0.8s ease forwards;
+}
+
+/* Add typing effect class (can be applied via JS) */
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink 0.8s infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: #ff4f81; }
+}
+
+/* Glowing border animation */
+@keyframes glowBorder {
+  0% { border-color: rgba(255, 79, 129, 0.3); }
+  50% { border-color: rgba(155, 93, 229, 0.5); }
+  100% { border-color: rgba(255, 79, 129, 0.3); }
+}
+
+
+/* ===== Fade In Animation ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Hide Utility ===== */
+.hidden {
+  display: none;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  h1 { 
+    font-size: 1.6rem; 
+  }
+  
+  .date-picker {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  input[type="date"], button {
+    width: 90%;
+    max-width: 300px;
+    margin: 0;
+    min-width: auto;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .description-section {
+    min-width: auto;
+  }
+
+  #description {
+    padding: 15px;
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  #apodContainer {
+    text-align: center;
+  }
+
+  #apodContainer h2 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  #apodContainer {
+    max-width: 95%;
+  }
+  
+  .content-wrapper {
+    gap: 20px;
+  }
+  
+  .date-picker {
+    gap: 12px;
+  }
+  
+  input[type="date"], button {
+    min-width: 180px;
+  }
+}
