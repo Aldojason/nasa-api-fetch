@@ -23,4 +23,4 @@ The user can select any date and instantly view the image along with its explana
 ---
 
 ## 🌌 Live Demo
-🔗 **[Click here to view the project](#)**
+🔗 **[Click here to view the project]( https://aldojason.github.io/nasa-api-fetch/)**
